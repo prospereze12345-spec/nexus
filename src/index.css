@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0A0A0F;
+  --color-bg-secondary: #111118;
+  --color-bg-tertiary: #1A1A24;
+  --color-accent-primary: #5B5BFF;
+  --color-accent-glow: #7B7BFF;
+  --color-accent-gold: #FFD166;
+  --color-text-primary: #F0F0FF;
+  --color-text-secondary: #9090AA;
+  --color-text-muted: #5A5A72;
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(91, 91, 255, 0.35);
+
+  --font-space: 'Space Grotesk', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space);
+  color: var(--color-text-primary);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Noise overlay */
+.noise-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+}
+
+/* Hide scrollbar for cleaner look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-tertiary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
+/* Custom Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 1px transparent;
+}
+.card-hover:hover {
+  box-shadow: 0 0 0 1px var(--color-border-hover);
+  transform: translateY(-4px);
+}
